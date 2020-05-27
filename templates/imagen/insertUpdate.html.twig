@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Imagen{% endblock %}
+{% block body %}
+<div class="row mt-5 pl-5">
+    <div class="col-6">    
+        <form class="mb-5" action="/imagen/guardar" method="post" enctype="multipart/form-data">   
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-pencil-square-o"></i>Producto</div>
+                    </div>
+                    <select class="form-control" id="idproducto" name="idproducto" placeholder=" ">
+                        {% for item in  producto %}
+                            {% if imagen[0].idproducto.id == item.id %}
+                                <option value="{{ item.id }}" selected> {{ item.nombre }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}"> {{ item.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}                                                                                        
+                    </select>
+                </div>
+            </div>
+
+              <div class="form-group nuevoinput">
+                    <button id="btnAdd" name="btnAdd" type="button">Añadir Fichero</button>
+                {% for i in 0..imagen|length -1 %}
+                    {% set item = imagen[i] %}
+                    {% set rutafichero = "/img/producto/" ~ item.idproducto.id ~ "/" ~ item.nombre %}
+                        <div class="mt-5">
+                            <label for="textTitulo">Fichero ({{ item.nombre }})</label>
+                            <input id="nuevoinput" type="file" class="form-control" name="nombre[]" aria-describedby="nombre" placeholder="Imagen">
+                            <button type="button" onclick="QuitarUploadAjax(this,{{item.id}});">Eliminar</button>
+                            <img src="{{ rutafichero }}" alt="{{item.nombre}}" height="150" width="150"/>
+                        </div>
+                {% endfor %}
+            </div>
+            {# <input type="hidden" name="id" value="{{imagen.id}}"> #}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <a class="btn btn-primary" href="/producto" role="button">Volver</a> 
+            </div> 
+
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/imagenjs.js"></script>
+{% endblock %}

@@ -1,0 +1,112 @@
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+#Categoria
+
+CategoriaNuevoPost:
+    path: /categoria/nuevo/{id?}
+    controller: App\Controller\CategoriaController::Crear
+
+CategoriaEditarPost:
+    path: /categoria/editar/{id}
+    controller: App\Controller\CategoriaController::Editar
+
+CategoriaGuardarPost:
+    path: /categoria/guardar
+    controller: App\Controller\CategoriaController::Guardar
+    methods: [POST]
+
+CategoriaBorrarPost:
+    path: /categoria/borrar/{id}
+    controller: App\Controller\CategoriaController::Borrar
+
+categoria:
+    path: /categoria/{page?}
+    controller: App\Controller\CategoriaController::index
+
+#Producto
+
+ProductoNuevoPost:
+    path: /producto/nuevo/{id?}
+    controller: App\Controller\ProductoController::Crear
+
+ProductoEditarPost:
+    path: /producto/editar/{id}
+    controller: App\Controller\ProductoController::Editar
+
+ProductoGuardarPost:
+    path: /producto/guardar
+    controller: App\Controller\ProductoController::Guardar
+    methods: [POST]
+
+ProductoBorrarPost:
+    path: /producto/borrar/{id}
+    controller: App\Controller\ProductoController::Borrar
+
+producto:
+    path: /producto/{page?}
+    controller: App\Controller\ProductoController::index
+
+#Usuario
+
+Usuario:
+    path: /usuario
+    controller: App\Controller\UsuarioController::index
+
+UsuarioNuevo:
+    path: /usuario/nuevo/{id?}
+    controller: App\Controller\UsuarioController::Crear
+
+UsuarioEditar:
+    path: /usuario/editar/{id}
+    controller: App\Controller\UsuarioController::Editar
+
+UsuarioGuardar:
+    path: /usuario/guardar
+    controller: App\Controller\UsuarioController::Guardar
+    methods: [POST]
+
+UsuarioBorrar:
+    path: /usuario/Borrar/{id?}
+    controller: App\Controller\UsuarioController::Borrar
+
+# Imagen que es igual que multimedia Multimedia :
+ImagenNuevoPost:
+    path: /imagen/nuevo/{id?}
+    controller: App\Controller\ImagenController::Crear
+    
+ImagenEditarPost:
+    path: /imagen/editar/{id}
+    controller: App\Controller\ImagenController::Editar      
+
+ImagenBorrar:
+    path: /imagen/borrar
+    controller: App\Controller\ImagenController::Borrar
+    methods: [POST]
+
+ImagenGuardarPost:
+    path: /imagen/guardar
+    controller: App\Controller\ImagenController::Guardar      
+    methods: [POST]
+ 
+#Detalle
+
+DetalleProducto:
+    path: /detalle/{idproducto}
+    controller: App\Controller\HomeController::Detalle
+
+#Cesta
+Cesta:
+    path: /cesta
+    controller: App\Controller\CestaController::index
+
+CestaAdd:
+    path: /cesta/add
+    controller: App\Controller\CestaController::add
+    methods: [POST]
+
+#Admin
+Admin:
+    path: /admin
+    controller: App\Controller\AdminController::index

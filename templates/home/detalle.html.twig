@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{producto.nombre}}{% endblock %}
+
+{% block body %}
+<div class="row p-5">
+    <div class="col-12">{{producto.nombre}}</div>
+    <div class="col-12">{{producto.descripcion}}</div>
+    <div class="col-12">{{producto.idcategoria.nombre}}</div>
+    <div class="col-12">{{producto.precio|format_currency('EUR', locale='en')}}</div>
+    <div class="col-12">
+        <div class="row">
+        {% for item in imagenes %}
+            <div class="col-4">
+                <img class="card-img-top" src="/img/producto/{{item.idproducto.id}}/{{item.nombre}}" alt="item.nombre" />
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <button class="btn btn-primary cesta" idp="{{ producto.id }}">Añadir a Cesta</button>   
+</div>
+
+{# {{dump(producto)}}
+{{dump(imagenes)}} #}
+{% endblock %}

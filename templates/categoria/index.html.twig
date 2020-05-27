@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Listado Categorías{% endblock %}
+{% block body %}
+  
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       {% for item in categoria %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td><a class="btn btn-sm btn-warning" href="/categoria/editar/{{item.id}}"><i class="fa fa-pencil-square-o"></i>Editar</a> </td>
+                                <td><a class="btn btn-sm btn-danger" href="/categoria/borrar/{{item.id}}"><i class="fa fa-trash"></i>Eliminar</a> </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="/categoria/nuevo" style="text-decoration: none; color:blanchedalmond;">Añadir Categoria</a></button>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="/admin" style="text-decoration: none; color:blanchedalmond;">Volver a Administrar</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<nav aria-label="Paginador categorias">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{{ path("categoria", {page: prev}) }}">Anterior</a></li>
+            {% for i in 1..numPag %}
+                {% set active = "" %}
+                {% if page==i %}
+                    {% set active = "active" %}
+                {% endif %}
+                    <li class="page-item {{active}}"><a class="page-link" href="{{ path("categoria", {page: i}) }}">{{i}}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" href="{{ path("categoria", {page: next}) }}">Siguiente</a></li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+

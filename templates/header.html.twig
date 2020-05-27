@@ -1,0 +1,74 @@
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" href="#">Logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categoria">Categorías</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/articulos">Noticias visitadas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contacto</a>
+      </li>
+      <li lass="nav-item">
+        <a class="nav-link" href="/cesta">
+          <span id="cesta"></span>
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- <form class="form-inline my-2 my-lg-0" action="<?php echo URL_BASE ?>Noticias/buscarNoticia&pagina=<?php echo $val->titulo?>" method="get"> -->
+        <form class="form-inline my-2 my-lg-0" action="Noticias/buscarNoticia" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscador noticias" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Idioma
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Español</a>
+          <a class="dropdown-item" href="#">English</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav d-flex justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Registrarse</a>
+        </li>
+    </ul>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% set nombre = app.user.email %}
+        {% if app.user.nombre %}
+            {% set nombre = app.user.nombre %}
+    {% endif %}
+        <ul class="navbar-nav d-flex justify-content-end">
+        <li class="nav-item">
+            <div class="dropdown mx-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nombre}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/admin">Administrar</a>
+                        <a class="dropdown-item" href="/usuario">Perfil</a>
+                        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+                    </div>
+            </div>
+        </li>
+    </ul>
+    {% else %}
+        <a href="/login" style="color:#004e5d">Login</a>
+    {%  endif %}
+  </div>
+</nav>
+{% endblock %}

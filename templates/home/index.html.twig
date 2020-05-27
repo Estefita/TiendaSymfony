@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="row">
+  {% for item in listProducto %}
+  <div class="col-3">
+    <a href="/detalle/{{item.id}}" title="{{item.NombreImagen}}">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="/img/producto/{{item.id}}/{{item.NombreImagen}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{item.NombreImagen}}</h5>
+        <p class="card-text">{{item.descripcion}}</p>
+        <p class="card-text">{{ item.precio|format_currency('EUR', locale='es') }}</p>
+        <button class="btn btn-primary cesta">Detalle</button>
+      </div>
+    </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
